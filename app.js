@@ -2,6 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const config = require("config");
+const startupDebugger = require("debug")("app:startup");
 const logger = require("./middleware/logger");
 const authentication = require("./middleware/authentication");
 const app = express();
@@ -29,5 +30,5 @@ app.use("/api/post", postRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
+  startupDebugger(`Listening on port ${PORT}...`);
 });
