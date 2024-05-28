@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const config = require("config");
 const logger = require("./middleware/logger");
 const authentication = require("./middleware/authentication");
 const app = express();
@@ -17,6 +18,11 @@ app.use(authentication());
 // Third-party middleware
 app.use(helmet());
 app.use(morgan("tiny"));
+
+console.log(`Node Env: ${process.env.NODE_ENV}`);
+console.log(`Application Name: ${config.get("name")}`);
+console.log(`Mail Host: ${config.get("mail.host")}`);
+// console.log(`Mail Key: ${config.get("mail.key")}`);
 
 app.use("/api/course", courseRouter);
 app.use("/api/post", postRouter);
