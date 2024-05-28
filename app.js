@@ -20,6 +20,9 @@ app.use(authentication());
 app.use(helmet());
 app.use(morgan("tiny"));
 
+// Serving static assets
+app.use(express.static("public"));
+
 console.log(`Node Env: ${process.env.NODE_ENV}`);
 console.log(`Application Name: ${config.get("name")}`);
 console.log(`Mail Host: ${config.get("mail.host")}`);
